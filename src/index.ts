@@ -5,6 +5,7 @@ import { config } from './config';
 import { initDatabase } from './database';
 import eventRoutes from './routes/eventRoutes';
 import feedbackRoutes from './routes/feedbackRoutes';
+import analyticsRoutes from './routes/analyticsRoutes';
 
 const app = express();
 app.use(cors());
@@ -26,6 +27,7 @@ app.get('/api/health', (_req, res) => {
 // Trasy API
 app.use('/api/event', eventRoutes);
 app.use('/api/feedback', feedbackRoutes);
+app.use('/api/analytics', analyticsRoutes);
 
 async function bootstrap(): Promise<void> {
   await initDatabase();
@@ -40,4 +42,5 @@ bootstrap().catch((err) => {
   console.error('[Bootstrap] Blad krytyczny:', err);
   process.exit(1);
 });
+
 
