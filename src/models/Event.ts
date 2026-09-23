@@ -1,4 +1,4 @@
-﻿import { Entity, PrimaryGeneratedColumn, Column, Index, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, Index, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 
 @Entity('events')
 export class Event {
@@ -22,33 +22,27 @@ export class Event {
   @Column({ name: 'owner_name', type: 'varchar', length: 100, default: '' })
   ownerName!: string;
 
-  // 'poll' (z ankieta) lub 'quick' (szybkie wyjscie)
   @Column({ type: 'varchar', length: 20, default: 'poll' })
   type!: string;
 
-  // 'collecting' | 'finalized' | 'cancelled'
   @Column({ type: 'varchar', length: 20, default: 'collecting' })
   status!: string;
 
-  // Zakres dni dla ankiety (YYYY-MM-DD)
   @Column({ name: 'date_from', type: 'varchar', length: 10, nullable: true })
   dateFrom!: string | null;
 
   @Column({ name: 'date_to', type: 'varchar', length: 10, nullable: true })
   dateTo!: string | null;
 
-  // Godziny (HH:MM)
   @Column({ name: 'hour_from', type: 'varchar', length: 5, default: '16:00' })
   hourFrom!: string;
 
   @Column({ name: 'hour_to', type: 'varchar', length: 5, default: '23:00' })
   hourTo!: string;
 
-  // Deadline odpowiedzi
-  @Column({ name: 'deadline', type: 'datetime', nullable: true })
+  @Column({ name: 'deadline', type: 'timestamp', nullable: true })
   deadline!: Date | null;
 
-  // Finalny termin (ustalony po zamknieciu)
   @Column({ name: 'final_slot', type: 'varchar', length: 100, nullable: true })
   finalSlot!: string | null;
 
